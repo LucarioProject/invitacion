@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estefany & Jesús - Invitación de Boda</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <!-- Header Navigation -->
+        <header class="hero-header">
+            <nav class="hero-nav">
+                <a href="#itinerario" class="nav-link">ITINERARIO</a>
+                <a href="#rsvp" class="nav-link">RSVP</a>
+                <a href="#ubicacion" class="nav-link">UBICACIONES</a>
+            </nav>
+            <button class="home-icon" id="menuToggle">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </header>
+        
+        <!-- Side Menu Overlay -->
+        <div class="side-menu-overlay" id="menuOverlay"></div>
+        
+        <!-- Side Menu -->
+        <div class="side-menu" id="sideMenu">
+            <div class="side-menu-header">
+                <h2 class="side-menu-title">Estefany & Jesús</h2>
+                <p class="side-menu-date">5 de abril del 2026</p>
+            </div>
+            <nav class="side-menu-content">
+                <a href="#hero" class="side-menu-link">INICIO</a>
+                <a href="#itinerario" class="side-menu-link">ITINERARIO</a>
+                <a href="#ubicacion" class="side-menu-link">UBICACIÓN</a>
+                <a href="#mesa-regalos" class="side-menu-link">MESA DE REGALOS</a>
+                <a href="#codigo-vestimenta" class="side-menu-link">CÓDIGO DE VESTIMENTA</a>
+                <a href="#rsvp" class="side-menu-link">CONFIRMAR ASISTENCIA</a>
+            </nav>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="hero-content-wrapper">
+            <div class="hero-content">
+                <h1 class="hero-names">Estefany & Jesús</h1>
+                <p class="hero-date">5 de abril del 2026</p>
+            </div>
+        </div>
+        
+        <!-- Main Image -->
+        <div class="hero-main-image">
+            <img src="images/principal.jpeg" alt="Estefany y Jesús" class="main-image" id="mainImage">
+        </div>
+    </section>
+
+    <!-- Message Section -->
+    <section class="message-section">
+        <div class="container">
+            <div class="message-content animate-on-scroll">
+                <p class="message-text">El tiempo nos trajo hasta el momento más importante de nuestras vidas, y queremos vivirlo contigo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wedding Announcement -->
+    <section class="announcement-section">
+        <div class="announcement-image-wrapper">
+            <img src="images/cena.jpg" alt="Cena" class="announcement-image parallax-image" data-speed="0.5">
+        </div>
+        <div class="announcement-content">
+            <h2 class="announcement-title animate-on-scroll">¡Nos casamos!</h2>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="countdown-section">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Días Para El Gran Día</h2>
+            <div class="countdown-container animate-on-scroll">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Días</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutos</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Segundos</div>
+                </div>
+            </div>
+            <p class="countdown-message animate-on-scroll">¿Nos acompañas en la celebración?</p>
+        </div>
+    </section>
+
+    <!-- Itinerary Section -->
+    <section class="itinerary-section" id="itinerario">
+        <div class="container">
+            <h2 class="section-title section-title-light animate-on-scroll">Itinerario</h2>
+            <div class="timeline animate-on-scroll">
+                <div class="timeline-item">
+                    <div class="timeline-icon">💒</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Ceremonia</h3>
+                        <p class="timeline-time">1:00pm - 2:00pm</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🍽️</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Recepción y Cena</h3>
+                        <p class="timeline-time">2:00pm - 5:00pm</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🍷</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Copa de Vino</h3>
+                        <p class="timeline-time">5:00pm - 6:00pm</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🎉</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Celebración</h3>
+                        <p class="timeline-time">6:00pm - 12:00am</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location-section" id="ubicacion">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Ubicación</h2>
+            <div class="location-content animate-on-scroll">
+                <div class="location-image-wrapper">
+                    <img src="images/iglesia.jpg" alt="Iglesia de Venecia" class="location-image">
+                </div>
+                <div class="location-info">
+                    <p class="location-name">Iglesia de Venecia</p>
+                    <p class="location-address">Venecia, San Carlos</p>
+                    <a href="https://maps.app.goo.gl/vAkt3U5kzZNPCKoq7" target="_blank" rel="noopener noreferrer" class="location-button">Cómo llegar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gift Registry Section -->
+    <section class="gifts-section" id="mesa-regalos">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Mesa de Regalos</h2>
+            <div class="gifts-content animate-on-scroll">
+                <p class="gifts-message">¡Tu presencia es lo más importante! Y si está en tu disposición, recibiremos una muestra de cariño, ¡estaremos muy agradecidos!</p>
+                <div class="gift-options">
+                    <div class="gift-option">
+                        <div class="gift-icon">💰</div>
+                        <h3 class="gift-title">Transferencia</h3>
+                        <p class="gift-detail">Estefany Cerdas Pacheco</p>
+                        <p class="gift-detail">CLABE: 123456789012345678</p>
+                        <p class="gift-detail">Cuenta: 1234567890</p>
+                    </div>
+                    <div class="gift-option">
+                        <div class="gift-icon">💌</div>
+                        <h3 class="gift-title">Sobre</h3>
+                        <p class="gift-description">La mesa de sobres estará disponible en la recepción, donde se podrá dejar una carta o sobre con tu regalo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dress Code Section -->
+    <section class="dresscode-section" id="codigo-vestimenta">
+        <div class="container">
+            <h2 class="section-title section-title-light animate-on-scroll">Código de Vestimenta</h2>
+            <div class="dresscode-content animate-on-scroll">
+                <h3 class="dresscode-style">Formal</h3>
+                <div class="dresscode-icons">
+                    <div class="dresscode-icon">👔</div>
+                    <div class="dresscode-icon">👗</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section class="rsvp-section" id="rsvp">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Confirmar Asistencia</h2>
+            <div class="rsvp-content animate-on-scroll">
+                <div class="rsvp-buttons">
+                    <button class="rsvp-btn rsvp-yes" id="rsvpYes">
+                        <span class="rsvp-icon">✅</span>
+                        <span class="rsvp-text">Asistir</span>
+                    </button>
+                    <button class="rsvp-btn rsvp-no" id="rsvpNo">
+                        <span class="rsvp-icon">❌</span>
+                        <span class="rsvp-text">No Asistir</span>
+                    </button>
+                </div>
+                <p class="rsvp-message" id="rsvpMessage"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Message -->
+    <section class="final-section">
+        <div class="final-image-wrapper">
+            <img src="images/footer.jpeg" alt="Estefany y Jesús" class="final-image parallax-image" data-speed="0.5">
+        </div>
+        <div class="final-content">
+            <p class="final-message animate-on-scroll">Te esperamos para celebrar juntos este capítulo de nuestras vidas.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-social">
+            <a href="#" class="social-icon">📷</a>
+            <a href="#" class="social-icon">📘</a>
+            <a href="#" class="social-icon">💬</a>
+        </div>
+        <p class="footer-text">Copyright by Jesús Jiménez</p>
+        <p class="footer-text">Diseño y desarrollo por Jesús Jiménez</p>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Subir">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
