@@ -3,16 +3,70 @@ const mainImage = document.getElementById('mainImage');
 const heroMainImage = document.querySelector('.hero-main-image');
 
 if (mainImage && heroMainImage) {
+    // Asegurar que la imagen mantenga su ancho completo y el difuminado siempre
+    function enforceImageWidth() {
+        if (mainImage) {
+            const containerWidth = heroMainImage.offsetWidth || window.innerWidth;
+            mainImage.style.width = '100%';
+            mainImage.style.minWidth = '100%';
+            mainImage.style.maxWidth = '100vw';
+            mainImage.style.transform = 'none';
+            // Mantener el mask-image durante el scroll
+            mainImage.style.maskImage = 'linear-gradient(to bottom, black 0%, black 40%, rgba(0, 0, 0, 0.98) 55%, rgba(0, 0, 0, 0.95) 65%, rgba(0, 0, 0, 0.9) 72%, rgba(0, 0, 0, 0.8) 78%, rgba(0, 0, 0, 0.65) 84%, rgba(0, 0, 0, 0.45) 89%, rgba(0, 0, 0, 0.3) 93%, rgba(0, 0, 0, 0.2) 95%, rgba(0, 0, 0, 0.1) 97%, rgba(0, 0, 0, 0.05) 98.5%, transparent 100%)';
+            mainImage.style.webkitMaskImage = 'linear-gradient(to bottom, black 0%, black 40%, rgba(0, 0, 0, 0.98) 55%, rgba(0, 0, 0, 0.95) 65%, rgba(0, 0, 0, 0.9) 72%, rgba(0, 0, 0, 0.8) 78%, rgba(0, 0, 0, 0.65) 84%, rgba(0, 0, 0, 0.45) 89%, rgba(0, 0, 0, 0.3) 93%, rgba(0, 0, 0, 0.2) 95%, rgba(0, 0, 0, 0.1) 97%, rgba(0, 0, 0, 0.05) 98.5%, transparent 100%)';
+        }
+    }
+    
+    // Aplicar al cargar y en cada scroll
+    enforceImageWidth();
+    window.addEventListener('resize', enforceImageWidth);
+    
+    // Usar requestAnimationFrame para asegurar que se aplique después de cualquier otro cambio
+    let lastScrollTime = 0;
+    window.addEventListener('scroll', () => {
+        const now = Date.now();
+        if (now - lastScrollTime > 16) { // Limitar a ~60fps
+            requestAnimationFrame(() => {
+                enforceImageWidth();
+            });
+            lastScrollTime = now;
+        }
+    }, { passive: true });
+    
+    // Observer para asegurar que el mask-image se mantenga si algo lo cambia
+    const maskGradient = 'linear-gradient(to bottom, black 0%, black 40%, rgba(0, 0, 0, 0.98) 55%, rgba(0, 0, 0, 0.95) 65%, rgba(0, 0, 0, 0.9) 72%, rgba(0, 0, 0, 0.8) 78%, rgba(0, 0, 0, 0.65) 84%, rgba(0, 0, 0, 0.45) 89%, rgba(0, 0, 0, 0.3) 93%, rgba(0, 0, 0, 0.2) 95%, rgba(0, 0, 0, 0.1) 97%, rgba(0, 0, 0, 0.05) 98.5%, transparent 100%)';
+    
+    const observer = new MutationObserver(() => {
+        if (mainImage) {
+            // Verificar y restaurar el mask-image si se perdió
+            const currentMask = mainImage.style.maskImage || getComputedStyle(mainImage).maskImage;
+            if (!currentMask || currentMask === 'none') {
+                mainImage.style.setProperty('mask-image', maskGradient, 'important');
+                mainImage.style.setProperty('-webkit-mask-image', maskGradient, 'important');
+            }
+        }
+    });
+    
+    // Observar cambios en los atributos de estilo
+    if (mainImage) {
+        observer.observe(mainImage, {
+            attributes: true,
+            attributeFilter: ['style']
+        });
+    }
+    
     // Check if image is already loaded
     if (mainImage.complete && mainImage.naturalHeight !== 0) {
         heroMainImage.classList.add('has-image');
         mainImage.style.opacity = '1';
         mainImage.style.display = 'block';
+        enforceImageWidth();
     } else {
         mainImage.addEventListener('load', function() {
             heroMainImage.classList.add('has-image');
             this.style.opacity = '1';
             this.style.display = 'block';
+            enforceImageWidth();
         });
         
         mainImage.addEventListener('error', function() {
@@ -25,6 +79,7 @@ if (mainImage && heroMainImage) {
         // Set initial display
         mainImage.style.display = 'block';
         mainImage.style.opacity = '1';
+        enforceImageWidth();
     }
 }
 
@@ -55,10 +110,10 @@ function updateCountdown() {
     const distance = weddingDate - now;
 
     if (distance < 0) {
-        document.getElementById('days').textContent = '00';
-        document.getElementById('hours').textContent = '00';
-        document.getElementById('minutes').textContent = '00';
-        document.getElementById('seconds').textContent = '00';
+        updateCountdownNumber('days', '00');
+        updateCountdownNumber('hours', '00');
+        updateCountdownNumber('minutes', '00');
+        updateCountdownNumber('seconds', '00');
         return;
     }
 
@@ -67,15 +122,59 @@ function updateCountdown() {
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    document.getElementById('days').textContent = String(days).padStart(2, '0');
-    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    updateCountdownNumber('days', String(days).padStart(2, '0'));
+    updateCountdownNumber('hours', String(hours).padStart(2, '0'));
+    updateCountdownNumber('minutes', String(minutes).padStart(2, '0'));
+    updateCountdownNumber('seconds', String(seconds).padStart(2, '0'));
+}
+
+// Función para actualizar números con animación moderna
+function updateCountdownNumber(id, newValue) {
+    const element = document.getElementById(id);
+    if (!element) return;
+    
+    const currentValue = element.textContent;
+    if (currentValue === newValue) return;
+    
+    // Agregar clase de animación
+    element.classList.add('countdown-updating');
+    
+    // Cambiar el valor después de un breve delay para la animación
+    setTimeout(() => {
+        element.textContent = newValue;
+        element.classList.remove('countdown-updating');
+    }, 150);
+}
+
+// Función para actualizar labels en móvil
+function updateCountdownLabels() {
+    const minutesLabel = document.querySelector('.countdown-item:nth-child(3) .countdown-label');
+    const secondsLabel = document.querySelector('.countdown-item:nth-child(4) .countdown-label');
+    
+    if (window.innerWidth <= 768) {
+        if (minutesLabel && minutesLabel.textContent === 'Minutos') {
+            minutesLabel.textContent = 'Min';
+        }
+        if (secondsLabel && secondsLabel.textContent === 'Segundos') {
+            secondsLabel.textContent = 'Seg';
+        }
+    } else {
+        if (minutesLabel && minutesLabel.textContent === 'Min') {
+            minutesLabel.textContent = 'Minutos';
+        }
+        if (secondsLabel && secondsLabel.textContent === 'Seg') {
+            secondsLabel.textContent = 'Segundos';
+        }
+    }
 }
 
 // Update countdown every second
 setInterval(updateCountdown, 1000);
 updateCountdown();
+
+// Actualizar labels en móvil
+updateCountdownLabels();
+window.addEventListener('resize', updateCountdownLabels);
 
 // Scroll Animations
 const observerOptions = {
@@ -133,16 +232,20 @@ function parallaxScroll() {
                     const yPos = -(scrolled * speed * 0.3);
                     element.style.transform = `translate3d(0, ${yPos}px, 0)`;
                 }
+            } else if (element.classList.contains('announcement-image')) {
+                // Para la imagen de anuncio, mantener dentro del contenedor sin parallax excesivo
+                // Solo un parallax muy sutil
+                const yPos = -(scrolled * speed * 0.3);
+                element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                // Asegurar que mantenga el ancho
+                element.style.width = '100%';
+                element.style.left = '0';
+                
+                // NO mover el contenido del texto - debe quedarse fijo para que el gradiente cubra toda la imagen
             } else {
-                // Para otras imágenes con parallax completo (anuncio)
+                // Para otras imágenes con parallax completo
                 const yPos = -(scrolled * speed);
                 element.style.transform = `translate3d(0, ${yPos}px, 0)`;
-                
-                // Si es la imagen de anuncio, mover también el contenido del texto con la misma velocidad
-                if (element === announcementImage && announcementContent) {
-                    // El texto se mueve exactamente igual que la imagen
-                    announcementContent.style.transform = `translate3d(0, ${yPos}px, 0)`;
-                }
             }
         } else if (element.classList.contains('final-image')) {
             // Si la imagen del footer está fuera del viewport, asegurar que esté visible
@@ -190,6 +293,10 @@ function toggleMenu() {
         if (menuOverlay) {
             menuOverlay.classList.remove('active');
         }
+        // Remove menu-open class from home icon
+        if (menuToggle) {
+            menuToggle.classList.remove('menu-open');
+        }
         // Enable scroll
         document.body.style.overflow = '';
     } else {
@@ -197,6 +304,10 @@ function toggleMenu() {
         sideMenu.classList.add('active');
         if (menuOverlay) {
             menuOverlay.classList.add('active');
+        }
+        // Add menu-open class to home icon
+        if (menuToggle) {
+            menuToggle.classList.add('menu-open');
         }
         // Disable scroll
         document.body.style.overflow = 'hidden';
@@ -211,6 +322,9 @@ if (menuToggle && sideMenu) {
         menuOverlay.addEventListener('click', () => {
             sideMenu.classList.remove('active');
             menuOverlay.classList.remove('active');
+            if (menuToggle) {
+                menuToggle.classList.remove('menu-open');
+            }
             // Enable scroll
             document.body.style.overflow = '';
         });
@@ -222,6 +336,9 @@ if (menuToggle && sideMenu) {
             sideMenu.classList.remove('active');
             if (menuOverlay) {
                 menuOverlay.classList.remove('active');
+            }
+            if (menuToggle) {
+                menuToggle.classList.remove('menu-open');
             }
             // Enable scroll
             document.body.style.overflow = '';
