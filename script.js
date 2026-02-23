@@ -350,20 +350,33 @@ if (menuToggle && sideMenu) {
 const rsvpYesBtn = document.getElementById('rsvpYes');
 const rsvpNoBtn = document.getElementById('rsvpNo');
 const rsvpMessage = document.getElementById('rsvpMessage');
+const rsvpSection = document.getElementById('rsvp');
 
 if (rsvpYesBtn && rsvpNoBtn && rsvpMessage) {
+    function openWhatsAppRSVP(message) {
+        const configuredNumber = rsvpSection ? (rsvpSection.dataset.whatsappNumber || '').replace(/\D/g, '') : '';
+        if (!configuredNumber) return;
+
+        const whatsappUrl = `https://wa.me/${configuredNumber}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    }
+
     rsvpYesBtn.addEventListener('click', () => {
-        rsvpMessage.textContent = '¡Gracias por confirmar tu asistencia! Nos vemos el 16 de Mayo 🎉';
+        const confirmMessage = 'Hola, confirmo asistencia a la boda del 16 de mayo del 2026. ¡Nos vemos ese día!';
+        rsvpMessage.textContent = '¡Gracias por confirmar tu asistencia! Te estamos redirigiendo a WhatsApp... 🎉';
         rsvpMessage.style.color = 'var(--color-brown)';
         rsvpYesBtn.style.background = 'var(--color-brown-dark)';
         rsvpNoBtn.style.background = 'var(--color-brown)';
+        openWhatsAppRSVP(confirmMessage);
     });
 
     rsvpNoBtn.addEventListener('click', () => {
-        rsvpMessage.textContent = 'Lamentamos que no puedas asistir. ¡Esperamos verte pronto! 💙';
+        const declineMessage = 'Hola, no podre acompanarles en la boda del 16 de mayo del 2026. Les deseo que tengan una celebracion hermosa.';
+        rsvpMessage.textContent = 'Gracias por avisarnos. Te estamos redirigiendo a WhatsApp para enviar tu mensaje.';
         rsvpMessage.style.color = 'var(--color-brown)';
         rsvpNoBtn.style.background = 'var(--color-brown-dark)';
         rsvpYesBtn.style.background = 'var(--color-green)';
+        openWhatsAppRSVP(declineMessage);
     });
 }
 
