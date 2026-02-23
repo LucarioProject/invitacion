@@ -16,6 +16,7 @@
         <header class="hero-header">
             <nav class="hero-nav">
                 <a href="#itinerario" class="nav-link">ITINERARIO</a>
+                <a href="#galeria-fotos" class="nav-link">GALERÍA</a>
                 <a href="#rsvp" class="nav-link">RSVP</a>
                 <a href="#ubicacion" class="nav-link">UBICACIONES</a>
             </nav>
@@ -41,6 +42,7 @@
             <nav class="side-menu-content">
                 <a href="#hero" class="side-menu-link">INICIO</a>
                 <a href="#itinerario" class="side-menu-link">ITINERARIO</a>
+                <a href="#galeria-fotos" class="side-menu-link">GALERÍA DE FOTOS</a>
                 <a href="#ubicacion" class="side-menu-link">UBICACIÓN</a>
                 <a href="#mesa-regalos" class="side-menu-link">MESA DE REGALOS</a>
                 <a href="#codigo-vestimenta" class="side-menu-link">CÓDIGO DE VESTIMENTA</a>
@@ -199,6 +201,34 @@
         </div>
     </section>
 
+    <!-- Photo Gallery Section -->
+    <section class="gallery-section" id="galeria-fotos">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Galería de fotos</h2>
+            <p class="gallery-intro animate-on-scroll">Momentos que guardamos con mucho amor.</p>
+            <div class="photo-grid animate-on-scroll">
+                <button class="photo-card" data-gallery-index="0" aria-label="Abrir foto 1">
+                    <img src="images/principal.jpeg" alt="Foto de Estefany y Jesús 1">
+                </button>
+                <button class="photo-card" data-gallery-index="1" aria-label="Abrir foto 2">
+                    <img src="images/cena.jpg" alt="Foto de Estefany y Jesús 2">
+                </button>
+                <button class="photo-card" data-gallery-index="2" aria-label="Abrir foto 3">
+                    <img src="images/golden_hour.jpeg" alt="Foto de Estefany y Jesús 3">
+                </button>
+                <button class="photo-card" data-gallery-index="3" aria-label="Abrir foto 4">
+                    <img src="images/manos.jpeg" alt="Foto de Estefany y Jesús 4">
+                </button>
+                <button class="photo-card" data-gallery-index="4" aria-label="Abrir foto 5">
+                    <img src="images/footer.jpeg" alt="Foto de Estefany y Jesús 5">
+                </button>
+                <button class="photo-card" data-gallery-index="5" aria-label="Abrir foto 6">
+                    <img src="images/sonrisas.peg.jpeg" alt="Foto de Estefany y Jesús 6">
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- RSVP Section -->
     <section class="rsvp-section" id="rsvp">
         <div class="container">
@@ -218,6 +248,17 @@
             </div>
         </div>
     </section>
+
+    <!-- Gallery Lightbox -->
+    <div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true">
+        <button class="gallery-close" id="galleryClose" aria-label="Cerrar galería">×</button>
+        <button class="gallery-nav gallery-prev" id="galleryPrev" aria-label="Foto anterior">←</button>
+        <figure class="gallery-figure">
+            <img id="galleryLightboxImage" src="" alt="Foto ampliada">
+            <figcaption id="galleryCounter" class="gallery-counter">1 / 6</figcaption>
+        </figure>
+        <button class="gallery-nav gallery-next" id="galleryNext" aria-label="Siguiente foto">→</button>
+    </div>
 
     <!-- Final Message -->
     <section class="final-section">

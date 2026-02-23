@@ -351,19 +351,21 @@ const rsvpYesBtn = document.getElementById('rsvpYes');
 const rsvpNoBtn = document.getElementById('rsvpNo');
 const rsvpMessage = document.getElementById('rsvpMessage');
 
-rsvpYesBtn.addEventListener('click', () => {
-    rsvpMessage.textContent = '¡Gracias por confirmar tu asistencia! Nos vemos el 5 de Abril 🎉';
-    rsvpMessage.style.color = 'var(--color-brown)';
-    rsvpYesBtn.style.background = 'var(--color-brown-dark)';
-    rsvpNoBtn.style.background = 'var(--color-brown)';
-});
+if (rsvpYesBtn && rsvpNoBtn && rsvpMessage) {
+    rsvpYesBtn.addEventListener('click', () => {
+        rsvpMessage.textContent = '¡Gracias por confirmar tu asistencia! Nos vemos el 5 de Abril 🎉';
+        rsvpMessage.style.color = 'var(--color-brown)';
+        rsvpYesBtn.style.background = 'var(--color-brown-dark)';
+        rsvpNoBtn.style.background = 'var(--color-brown)';
+    });
 
-rsvpNoBtn.addEventListener('click', () => {
-    rsvpMessage.textContent = 'Lamentamos que no puedas asistir. ¡Esperamos verte pronto! 💙';
-    rsvpMessage.style.color = 'var(--color-brown)';
-    rsvpNoBtn.style.background = 'var(--color-brown-dark)';
-    rsvpYesBtn.style.background = 'var(--color-green)';
-});
+    rsvpNoBtn.addEventListener('click', () => {
+        rsvpMessage.textContent = 'Lamentamos que no puedas asistir. ¡Esperamos verte pronto! 💙';
+        rsvpMessage.style.color = 'var(--color-brown)';
+        rsvpNoBtn.style.background = 'var(--color-brown-dark)';
+        rsvpYesBtn.style.background = 'var(--color-green)';
+    });
+}
 
 // Additional parallax effects for timeline items
 const timelineItems = document.querySelectorAll('.timeline-item');
@@ -511,3 +513,67 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.opacity = '1';
     }, 100);
 });
+
+// Photo Gallery Lightbox
+(function initPhotoGallery() {
+    const cards = document.querySelectorAll('.photo-card');
+    const lightbox = document.getElementById('galleryLightbox');
+    const lightboxImage = document.getElementById('galleryLightboxImage');
+    const closeBtn = document.getElementById('galleryClose');
+    const prevBtn = document.getElementById('galleryPrev');
+    const nextBtn = document.getElementById('galleryNext');
+    const counter = document.getElementById('galleryCounter');
+
+    if (!cards.length || !lightbox || !lightboxImage || !closeBtn || !prevBtn || !nextBtn || !counter) {
+        return;
+    }
+
+    const imageSources = Array.from(cards).map((card) => {
+        const img = card.querySelector('img');
+        return img ? img.getAttribute('src') : '';
+    }).filter(Boolean);
+
+    let currentIndex = 0;
+
+    function renderImage(index) {
+        currentIndex = (index + imageSources.length) % imageSources.length;
+        lightboxImage.src = imageSources[currentIndex];
+        lightboxImage.alt = `Foto ampliada ${currentIndex + 1}`;
+        counter.textContent = `${currentIndex + 1} / ${imageSources.length}`;
+    }
+
+    function openLightbox(index) {
+        renderImage(index);
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    cards.forEach((card, index) => {
+        card.addEventListener('click', () => openLightbox(index));
+    });
+
+    prevBtn.addEventListener('click', () => renderImage(currentIndex - 1));
+    nextBtn.addEventListener('click', () => renderImage(currentIndex + 1));
+    closeBtn.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (!lightbox.classList.contains('active')) return;
+
+        if (event.key === 'Escape') closeLightbox();
+        if (event.key === 'ArrowLeft') renderImage(currentIndex - 1);
+        if (event.key === 'ArrowRight') renderImage(currentIndex + 1);
+    });
+})();
