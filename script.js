@@ -105,7 +105,7 @@ if (locationImage) {
 
 // Countdown Timer
 function updateCountdown() {
-    const weddingDate = new Date('2026-04-05T00:00:00').getTime();
+    const weddingDate = new Date('2026-05-16T00:00:00').getTime();
     const now = new Date().getTime();
     const distance = weddingDate - now;
 
@@ -353,7 +353,7 @@ const rsvpMessage = document.getElementById('rsvpMessage');
 
 if (rsvpYesBtn && rsvpNoBtn && rsvpMessage) {
     rsvpYesBtn.addEventListener('click', () => {
-        rsvpMessage.textContent = '¡Gracias por confirmar tu asistencia! Nos vemos el 5 de Abril 🎉';
+        rsvpMessage.textContent = '¡Gracias por confirmar tu asistencia! Nos vemos el 16 de Mayo 🎉';
         rsvpMessage.style.color = 'var(--color-brown)';
         rsvpYesBtn.style.background = 'var(--color-brown-dark)';
         rsvpNoBtn.style.background = 'var(--color-brown)';
