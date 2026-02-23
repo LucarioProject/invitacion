@@ -371,7 +371,7 @@ if (rsvpYesBtn && rsvpNoBtn && rsvpMessage) {
     });
 
     rsvpNoBtn.addEventListener('click', () => {
-        const declineMessage = 'Hola, no podre acompanarles en la boda del 16 de mayo del 2026. Les deseo que tengan una celebracion hermosa.';
+        const declineMessage = 'Hola, no podré acompañarles en la boda. Les deseo que tengan una celebración hermosa.';
         rsvpMessage.textContent = 'Gracias por avisarnos. Te estamos redirigiendo a WhatsApp para enviar tu mensaje.';
         rsvpMessage.style.color = 'var(--color-brown)';
         rsvpNoBtn.style.background = 'var(--color-brown-dark)';
