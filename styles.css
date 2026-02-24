@@ -1090,6 +1090,7 @@ section {
     border: 1px solid rgba(23, 36, 69, 0.16);
     border-radius: 999px;
     padding: 11px 20px;
+    text-align: center;
     transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
@@ -1664,11 +1665,11 @@ body {
 
 .hero-brand {
     position: absolute;
-    top: 16px;
-    left: 16px;
+    top: 98px;
+    left: 18px;
     bottom: auto;
     transform: none;
-    width: clamp(120px, 12vw, 190px);
+    width: clamp(150px, 14vw, 220px);
     border-radius: 18px;
     box-shadow: 0 12px 30px rgba(17, 27, 54, 0.28);
     z-index: 22;
@@ -2133,8 +2134,8 @@ body {
     }
 
     .hero-brand {
-        width: 84px;
-        top: 12px;
+        width: 102px;
+        top: 78px;
         left: 12px;
         border-radius: 12px;
     }
