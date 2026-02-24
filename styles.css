@@ -1388,6 +1388,17 @@ section {
     color: var(--color-white);
 }
 
+.footer-brand {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 1px solid rgba(252, 250, 246, 0.28);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+    margin: 0 auto 18px;
+    display: block;
+}
+
 .footer-social {
     display: flex;
     justify-content: center;
@@ -1649,6 +1660,19 @@ body {
     height: 100%;
     background: linear-gradient(180deg, rgba(23, 36, 69, 0.56) 0%, rgba(23, 36, 69, 0.18) 34%, rgba(23, 36, 69, 0.54) 100%);
     z-index: 1;
+}
+
+.hero-brand {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    bottom: auto;
+    transform: none;
+    width: clamp(120px, 12vw, 190px);
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(17, 27, 54, 0.28);
+    z-index: 22;
+    pointer-events: none;
 }
 
 .hero-content-wrapper {
@@ -1960,27 +1984,9 @@ body {
 }
 
 .dresscode-image {
-    width: min(200px, 100%);
-    margin-top: 18px;
-    border-radius: 14px;
-    border: 1px solid rgba(31, 47, 87, 0.14);
-    box-shadow: var(--shadow-card);
+    width: min(80px, 100%);
+    margin: 0 auto 14px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    transition: transform 0.28s ease, box-shadow 0.28s ease, filter 0.28s ease;
-    cursor: pointer;
-}
-
-.dresscode-image:hover {
-    transform: translateY(-4px) scale(1.015);
-    box-shadow: 0 16px 30px rgba(23, 36, 69, 0.16);
-    filter: saturate(1.03);
-}
-
-.dresscode-image:active {
-    transform: scale(0.98);
-    box-shadow: 0 8px 16px rgba(23, 36, 69, 0.14);
 }
 
 .dresscode-section .dresscode-icons {
@@ -2118,5 +2124,18 @@ body {
     .gift-icon {
         width: 64px;
         height: 64px;
+    }
+
+    .reception-button {
+        display: block;
+        width: fit-content;
+        margin: 18px auto 0;
+    }
+
+    .hero-brand {
+        width: 84px;
+        top: 12px;
+        left: 12px;
+        border-radius: 12px;
     }
 }
