@@ -1667,7 +1667,7 @@ body {
     left: 18px;
     bottom: auto;
     transform: none;
-    width: clamp(150px, 14vw, 220px);
+    width: clamp(250px, 16vw, 270px);
     border-radius: 0;
     box-shadow: none;
     z-index: 22;
